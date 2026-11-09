@@ -93,12 +93,15 @@ fun App(e: Estado, vm: EmperadorViewModel, carpetaFotos: File, acciones: Accione
         }
     }
     var ajustes by rememberSaveable { mutableStateOf(false) }
+    var verSol by rememberSaveable { mutableStateOf(false) }
     val h = e.abierta?.let { e.casa.habitacion(it) }
-    if (h != null) {
+    if (verSol) {
+        PantallaSol(e, acciones, onCerrar = { verSol = false })
+    } else if (h != null) {
         BackHandler { vm.abrir(null) }
         PantallaHabitacion(h, e, vm, carpetaFotos, acciones, snack, abrirAjustes = { ajustes = true })
     } else {
-        PantallaCasa(e, vm, carpetaFotos, acciones, snack, abrirAjustes = { ajustes = true })
+        PantallaCasa(e, vm, carpetaFotos, acciones, snack, abrirAjustes = { ajustes = true }, abrirSol = { verSol = true })
     }
     if (ajustes) DialogoAjustes(e, onGuardar = { clave, modelo -> vm.guardarAjustes(clave, modelo); ajustes = false }, onCerrar = { ajustes = false })
 }
@@ -107,7 +110,7 @@ fun App(e: Estado, vm: EmperadorViewModel, carpetaFotos: File, acciones: Accione
 
 @OptIn(ExperimentalMaterial3Api::class, ExperimentalLayoutApi::class)
 @Composable
-private fun PantallaCasa(e: Estado, vm: EmperadorViewModel, carpetaFotos: File, acciones: Acciones, snack: SnackbarHostState, abrirAjustes: () -> Unit) {
+private fun PantallaCasa(e: Estado, vm: EmperadorViewModel, carpetaFotos: File, acciones: Acciones, snack: SnackbarHostState, abrirAjustes: () -> Unit, abrirSol: () -> Unit) {
     var nueva by rememberSaveable { mutableStateOf(false) }
     var renombrar by rememberSaveable { mutableStateOf(false) }
     var menu by remember { mutableStateOf(false) }
@@ -152,6 +155,7 @@ private fun PantallaCasa(e: Estado, vm: EmperadorViewModel, carpetaFotos: File, 
                     )
                 }
             }
+            if (e.casa.habitaciones.isNotEmpty()) item { TarjetaUbicacion(e, vm, acciones, abrirSol) }
             items(e.casa.habitaciones, key = { it.id }) { h -> TarjetaHabitacion(h, carpetaFotos, e.analizando == h.id) { vm.abrir(h.id) } }
             val resumen = Inventario.porCategoria(e.casa)
             if (resumen.isNotEmpty()) item {
@@ -279,6 +283,8 @@ private fun PantallaHabitacion(h: Habitacion, e: Estado, vm: EmperadorViewModel,
                     }
                 }
             }
+            // --- orientación (soleamiento) ---
+            item { SeccionOrientacion(h, e, vm) }
             // --- objetos por categoría ---
             item {
                 Row(verticalAlignment = Alignment.CenterVertically) {

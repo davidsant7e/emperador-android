@@ -1,5 +1,6 @@
 package com.davidsant7e.emperador.ui
 
+import android.Manifest
 import android.content.ActivityNotFoundException
 import android.content.ClipData
 import android.content.ClipboardManager
@@ -16,6 +17,7 @@ import androidx.activity.viewModels
 import androidx.compose.runtime.getValue
 import androidx.core.content.FileProvider
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
+import com.davidsant7e.emperador.datos.Ubicacion
 import com.davidsant7e.emperador.nucleo.Inventario
 import java.io.File
 import java.time.LocalDate
@@ -29,6 +31,11 @@ class MainActivity : ComponentActivity() {
 
     private val elegirFotos = registerForActivityResult(ActivityResultContracts.PickMultipleVisualMedia(MAX_GALERIA)) { uris ->
         destinoFotos?.let { vm.agregarFotos(it, uris) }
+    }
+
+    private val pedirUbicacion = registerForActivityResult(ActivityResultContracts.RequestMultiplePermissions()) { r ->
+        if (r.values.any { it }) vm.ubicarConGps()
+        else Toast.makeText(this, "Sin permiso de ubicación: puedes pegar las coordenadas.", Toast.LENGTH_LONG).show()
     }
 
     private val tomarFoto = registerForActivityResult(ActivityResultContracts.TakePicture()) { ok ->
@@ -54,6 +61,7 @@ class MainActivity : ComponentActivity() {
                         compartirJson = { compartirArchivo("json", "application/json", vm.estado.value.casa.aJson()) },
                         compartirTexto = ::compartirTexto,
                         copiarTexto = ::copiar,
+                        ubicar = ::ubicar,
                     ),
                 )
             }
@@ -78,6 +86,11 @@ class MainActivity : ComponentActivity() {
         } catch (e: ActivityNotFoundException) {
             Toast.makeText(this, "No hay una app de cámara.", Toast.LENGTH_LONG).show()
         }
+    }
+
+    private fun ubicar() {
+        if (Ubicacion.tienePermiso(this)) vm.ubicarConGps()
+        else pedirUbicacion.launch(arrayOf(Manifest.permission.ACCESS_FINE_LOCATION, Manifest.permission.ACCESS_COARSE_LOCATION))
     }
 
     private fun galeria(id: String) {
@@ -128,4 +141,6 @@ class Acciones(
     val compartirJson: () -> Unit,
     val compartirTexto: (String) -> Unit,
     val copiarTexto: (String) -> Unit,
+    /** Pide permiso (si hace falta) y toma la ubicación de la casa con el GPS. */
+    val ubicar: () -> Unit,
 )

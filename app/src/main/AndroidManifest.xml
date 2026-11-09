@@ -3,6 +3,11 @@
 
     <!-- Solo para Gemini. La cámara se usa con la app de cámara del teléfono (no hace falta su permiso). -->
     <uses-permission android:name="android.permission.INTERNET" />
+    <!-- Ubicación de la casa para el estudio de soleamiento (solo cuando pulsas «Usar GPS»). -->
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+    <!-- La brújula es opcional: sin ella se elige la dirección a mano. -->
+    <uses-feature android:name="android.hardware.sensor.compass" android:required="false" />
 
     <!-- Para ofrecer «Tomar foto» con la app de cámara (Android 11+). -->
     <queries>

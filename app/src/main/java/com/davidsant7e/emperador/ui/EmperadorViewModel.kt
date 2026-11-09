@@ -9,6 +9,8 @@ import com.davidsant7e.emperador.datos.Almacen
 import com.davidsant7e.emperador.datos.Boveda
 import com.davidsant7e.emperador.datos.Fotos
 import com.davidsant7e.emperador.datos.Red
+import com.davidsant7e.emperador.datos.Ubicacion
+import com.davidsant7e.emperador.nucleo.Abertura
 import com.davidsant7e.emperador.nucleo.Casa
 import com.davidsant7e.emperador.nucleo.Gemini
 import com.davidsant7e.emperador.nucleo.Habitacion
@@ -31,6 +33,7 @@ data class Estado(
     /** Habitación que se está analizando con Gemini. */
     val analizando: String? = null,
     val importando: Boolean = false,
+    val ubicando: Boolean = false,
     val hayClave: Boolean = false,
     val modelo: String = Gemini.MODELO,
     val mensaje: String? = null,
@@ -181,6 +184,30 @@ class EmperadorViewModel(app: Application) : AndroidViewModel(app) {
     fun confirmarTodos(id: String) = cambiar(id) { h -> h.copy(objetos = h.objetos.map { it.copy(confirmado = true) }) }
 
     fun descartarSugeridos(id: String) = cambiar(id) { h -> h.copy(objetos = h.objetos.filter { it.confirmado }) }
+
+    // ---------- ubicación y orientación (soleamiento) ----------
+
+    fun fijarUbicacion(lat: Double?, lon: Double?) = cambiarCasa { it.copy(latitud = lat, longitud = lon) }
+
+    /** Se llama después de conceder el permiso de ubicación. */
+    fun ubicarConGps() {
+        if (_estado.value.ubicando) return
+        _estado.update { it.copy(ubicando = true) }
+        viewModelScope.launch {
+            val punto = Ubicacion.actual(getApplication<Application>())
+            if (punto != null) fijarUbicacion(punto.first, punto.second)
+            _estado.update {
+                it.copy(
+                    ubicando = false,
+                    mensaje = if (punto == null) "No se obtuvo la ubicación. Revisa que el GPS esté encendido o pega las coordenadas." else "Ubicación de la casa guardada.",
+                )
+            }
+        }
+    }
+
+    fun agregarAbertura(id: String, a: Abertura) = cambiar(id) { it.copy(aberturas = it.aberturas + a) }
+
+    fun borrarAbertura(id: String, aberturaId: String) = cambiar(id) { h -> h.copy(aberturas = h.aberturas.filterNot { it.id == aberturaId }) }
 
     // ---------- ajustes ----------
 

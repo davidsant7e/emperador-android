@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <style name="Theme.Emperador" parent="android:Theme.Material.Light.NoActionBar">
+        <item name="android:statusBarColor">#1F2A5C</item>
+        <item name="android:windowBackground">@color/fondo</item>
+    </style>
+    <color name="fondo">#FBF8F6</color>
+    <color name="azul_noche">#1F2A5C</color>
+    <color name="durazno">#F4A582</color>
+</resources>

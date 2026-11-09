@@ -1,0 +1,24 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 280 460" width="280" height="460"><defs><linearGradient id="d" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#1f2a5c"/><stop offset="1" stop-color="#f4a582"/></linearGradient><linearGradient id="d2" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#f4a582"/><stop offset="1" stop-color="#1f2a5c"/></linearGradient><clipPath id="c"><rect width="280" height="460" rx="20"/></clipPath></defs><g clip-path="url(#c)"><rect width="280" height="460" fill="url(#d)"/><rect y="346" width="280" height="114" fill="url(#d2)"/>
+<path d="M0 346 L50 290 L90 320 L140 270 L190 320 L230 290 L280 346 Z" fill="#1f2a5c" opacity="0.35"/>
+<!-- trono -->
+<rect x="86" y="128" width="108" height="170" rx="6" fill="#1f2a5c"/>
+<path d="M86 128 L96 104 L106 128 M174 128 L184 104 L194 128" fill="#1f2a5c"/>
+<circle cx="96" cy="104" r="6" fill="#f4a582"/><circle cx="184" cy="104" r="6" fill="#f4a582"/>
+<!-- emperador -->
+<path d="M120 150 L126 132 L133 142 L140 126 L147 142 L154 132 L160 150 Z" fill="#f4a582"/>
+<circle cx="140" cy="166" r="13" fill="#f4a582"/>
+<path d="M118 252 Q118 186 140 184 Q162 186 162 252 Z" fill="#f4a582"/>
+<path d="M170 196 V262" stroke="#f4a582" stroke-width="4" stroke-linecap="round"/>
+<circle cx="170" cy="192" r="6" fill="#f4a582"/>
+<rect x="100" y="250" width="80" height="14" rx="3" fill="#f4a582"/>
+<rect x="104" y="264" width="12" height="34" fill="#f4a582" opacity="0.8"/><rect x="164" y="264" width="12" height="34" fill="#f4a582" opacity="0.8"/>
+<!-- plano de la casa -->
+<g fill="none" stroke="#1f2a5c" stroke-width="4" stroke-linecap="round">
+<rect x="70" y="352" width="140" height="68" rx="3"/>
+<path d="M132 352 V376 M132 392 V420 M70 386 H112 M162 386 H210 M184 386 V420"/>
+</g>
+<rect x="80" y="362" width="22" height="14" rx="2" fill="#1f2a5c"/>
+<rect x="142" y="404" width="30" height="10" rx="2" fill="#1f2a5c"/>
+<rect x="192" y="396" width="10" height="16" rx="2" fill="#1f2a5c"/>
+<path d="M50 75L51.5 78.5L55 80L51.5 81.5L50 85L48.5 81.5L45 80L48.5 78.5Z" fill="#f4a582"/><path d="M232 61L233.5 64.5L237 66L233.5 67.5L232 71L230.5 67.5L227 66L230.5 64.5Z" fill="#f4a582"/>
+<text x="140" y="40" text-anchor="middle" fill="#f4a582" font-family="'Helvetica Neue', Arial, sans-serif" font-size="16" letter-spacing="7" font-weight="bold">IV</text><text x="140" y="446" text-anchor="middle" fill="#f4a582" font-family="'Helvetica Neue', Arial, sans-serif" font-size="18" letter-spacing="8" font-weight="bold">EL EMPERADOR</text></g></svg>

@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Ícono emperador (Arcanos, duotono). Generado por iconos.py: no editar a mano. -->
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    android:width="108dp"
+    android:height="108dp"
+    android:viewportWidth="108"
+    android:viewportHeight="108">
+    <group android:translateX="23" android:translateY="22" android:scaleX="0.62" android:scaleY="0.62">
+        <path android:pathData="M28 32 L33 12 L42 22 L50 8 L58 22 L67 12 L72 32 Z"
+            android:fillColor="#f4a582" />
+        <path android:pathData="M47.4,25 a2.6,2.6 0 1,0 5.2,0 a2.6,2.6 0 1,0 -5.2,0 Z"
+            android:fillColor="#1f2a5c" />
+        <path android:pathData="M35,27 a2,2 0 1,0 4,0 a2,2 0 1,0 -4,0 Z"
+            android:fillColor="#1f2a5c" />
+        <path android:pathData="M61,27 a2,2 0 1,0 4,0 a2,2 0 1,0 -4,0 Z"
+            android:fillColor="#1f2a5c" />
+        <path android:pathData="M20,38 H80 A4,4 0 0 1 84,42 V82 A4,4 0 0 1 80,86 H20 A4,4 0 0 1 16,82 V42 A4,4 0 0 1 20,38 Z"
+            android:fillColor="#00000000"
+            android:strokeColor="#f4a582"
+            android:strokeWidth="5"
+            android:strokeLineCap="round"
+            android:strokeLineJoin="round" />
+        <path android:pathData="M52 38 V58 M52 70 V86 M16 62 H40"
+            android:fillColor="#00000000"
+            android:strokeColor="#f4a582"
+            android:strokeWidth="4"
+            android:strokeLineCap="round"
+            android:strokeLineJoin="round" />
+        <path android:pathData="M25,45 H36 A2,2 0 0 1 38,47 V53 A2,2 0 0 1 36,55 H25 A2,2 0 0 1 23,53 V47 A2,2 0 0 1 25,45 Z"
+            android:fillColor="#f4a582" />
+        <path android:pathData="M62,72 H75 A2,2 0 0 1 77,74 V78 A2,2 0 0 1 75,80 H62 A2,2 0 0 1 60,78 V74 A2,2 0 0 1 62,72 Z"
+            android:fillColor="#f4a582" />
+        <path android:pathData="M61.5,45 H66.5 A1.5,1.5 0 0 1 68,46.5 V51.5 A1.5,1.5 0 0 1 66.5,53 H61.5 A1.5,1.5 0 0 1 60,51.5 V46.5 A1.5,1.5 0 0 1 61.5,45 Z"
+            android:fillColor="#f4a582" />
+    </group>
+</vector>
